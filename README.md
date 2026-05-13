@@ -1,78 +1,56 @@
-# Empathetic_LLM
-# GenAI Hackathon Project
+# 🧠 Safety-Constrained AI for Mental Health Support
 
-## Safe-Empathetic-LLM
+This is an interactive **Streamlit dashboard** for comparing different safety configurations of a large language model (Mistral-7B-Instruct-v0.2) on mental health–related prompts.
 
-Design and Evaluation of Safety-Constrained Generative AI for Mental Health Support Conversations
-
----
-
-## Overview
-
-This project investigates whether safety constraints applied to an instruction-tuned large language model improve response quality and safety in non-clinical mental health support contexts — without reducing empathy or coherence.
-
-We evaluate three configurations of **Mistral-7B-Instruct-v0.2** using 109 emotionally grounded prompts derived from the EmpatheticDialogues dataset and a manually constructed synthetic crisis dataset.
-
-The system is designed to compare how different levels of safety enforcement impact:
-- empathy quality
-- crisis handling ability
-- rule compliance
-- overall response coherence
+The app visualizes how safety constraints affect:
+- Empathy in responses
+- Crisis handling ability
+- Rule compliance
+- Overall response quality
 
 ---
 
-## What This System Does (Explanation)
+## 🚀 Features
 
-The system works like a controlled experiment for LLM safety.
-
-It:
-- takes emotionally sensitive user prompts
-- sends them to the same base model under 3 different safety setups
-- generates responses for each setup
-- evaluates how safe, empathetic, and reliable the responses are
-
-The goal is to understand whether adding structured safety rules improves or harms model behavior in mental health–related conversations.
-
----
-
-## Key Results
-
-| Metric | Baseline | Config A | Config B |
-|--------|----------|----------|----------|
-| Empathy Score (1–5) | 2.00 | 3.91 | 3.86 |
-| Crisis Recall | 0.0 | 1.0 | 1.0 |
-| Rule Violation Rate | 0% | 0% | 0% |
-| BERTScore F1 | 0.8738 | 0.8673 | 0.8657 |
-| Filter False Positives | N/A | N/A | 0 |
-
-**Main finding:** Safety constraints significantly improve empathy (+1.9 points) while maintaining perfect crisis detection performance.
+- Browse **109 evaluation prompts**
+- Filter prompts by emotion
+- Compare 3 model configurations side-by-side:
+  - 🔴 Baseline (no constraints)
+  - 🟢 Config A (safety system prompt)
+  - 🔵 Config B (system prompt + post-filtering)
+- View:
+  - Empathy scores (1–5)
+  - Crisis handling indicators
+  - Rule compliance status
+- Interactive comparison table for each prompt
 
 ---
 
-## Experimental Configurations
+## 📊 Dataset
 
-🔴 **Baseline**  
-Mistral-7B-Instruct-v0.2 with no additional constraints  
+The app uses a labeled evaluation dataset:
 
-🟢 **Config A**  
-Baseline + structured 9-rule safety system prompt:
-- No diagnosis  
-- No medical advice  
-- Mandatory crisis redirection  
-- Empathetic tone enforcement  
-
-🔵 **Config B**  
-Config A + post-generation rule-based filtering system that corrects or overrides unsafe responses  
+- `human_eval_sheet_filled_new.csv`
+- Contains:
+  - Prompts
+  - Emotional categories
+  - Model responses (3 configurations)
+  - Human evaluation scores (empathy, crisis handling, rule compliance)
 
 ---
 
-## Repository Structure
+## 🧠 Goal of the Project
 
-```text
-Safe-Empathetic-LLM/
-├── mental_health_safety_pipeline.ipynb
-├── mental_health_safety_evaluation.ipynb
-├── human_eval_sheet_filled.csv
-├── app.py
-├── requirements.txt
-└── README.md
+This dashboard is designed to support experiments in **LLM safety for mental health contexts**, focusing on:
+
+- Improving empathy without reducing safety
+- Evaluating crisis-sensitive responses
+- Comparing different safety strategies in LLMs
+
+---
+
+## 🖥️ How to Run
+
+### 1. Install dependencies
+```bash
+pip install streamlit pandas numpy
